@@ -7,10 +7,8 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SchoolManagerApp.Models;
-using Microsoft.Data.Entity;
 
-namespace SchoolManagerApp
+namespace WebApplication1
 {
     public class Startup
     {
@@ -20,8 +18,6 @@ namespace SchoolManagerApp
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
-
-           
             Configuration = builder.Build();
         }
 
@@ -30,25 +26,8 @@ namespace SchoolManagerApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            // Add framework services.
             services.AddMvc();
-
-            services.AddScoped<ISchoolManagerRepository, SchoolManagerRepository>();
-
-            services.AddCaching();
-            services.AddSession();
-
-            //var connString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=SchoolDB;Integrated Security=True";
-
-            //services
-            //    .AddEntityFramework()
-            //    .AddSqlServer()
-            //    .AddDbContext<IdentityDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-
-            services
-                .AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<SchoolManagerContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,8 +35,6 @@ namespace SchoolManagerApp
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            
 
             if (env.IsDevelopment())
             {
@@ -70,8 +47,6 @@ namespace SchoolManagerApp
             }
 
             app.UseIISPlatformHandler();
-
-            
 
             app.UseStaticFiles();
 

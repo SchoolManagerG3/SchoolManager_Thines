@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using SchoolManagerApp.Models;
+using SchoolManagerApp.ViewModels;
 
 namespace SchoolManagerApp.Controllers
 {
@@ -18,8 +19,15 @@ namespace SchoolManagerApp.Controllers
 
         public IActionResult Index()
         {
-            var students = _repository.GetAllStudents();
-            return View(students);
+            var model = _repository.GetAllStudents()
+               .Select(s => new CreateStudentViewModel()
+               {
+                   FirstName = s.FirstName,
+                   LastName = s.LastName,
+                   PersonalNumber = s.PersonalNumber
+               });
+            return View(model);
+
         }
 
         public IActionResult About()
