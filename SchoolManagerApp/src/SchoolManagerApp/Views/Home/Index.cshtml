@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h2>Students</h2>
+<div class="row">
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Students Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                </tr>
+
+            }
+        </tbody>
+        
+    </table>
+</div>
