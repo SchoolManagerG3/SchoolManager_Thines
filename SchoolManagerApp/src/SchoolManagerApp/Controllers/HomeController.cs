@@ -21,11 +21,11 @@ namespace SchoolManagerApp.Controllers
         {
             var model = _repository.GetAllStudents()
                .Select(s => new CreateStudentViewModel()
-               {
-                   FirstName = s.FirstName,
-                   LastName = s.LastName,
-                   PersonalNumber = s.PersonalNumber
-               });
+                {
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    PersonalNumber = s.PersonalNumber
+                });
             return View(model);
 
         }

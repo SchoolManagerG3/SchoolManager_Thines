@@ -14,6 +14,12 @@ namespace SchoolManagerApp.Tests
 {
     public class HomeControllerTests
     {
+        //private ISchoolManagerTestRepository _testRepository;
+
+        //public HomeControllerTests(ISchoolManagerTestRepository testRepository)
+        //{
+        //    _testRepository = testRepository;
+        //}
 
         [Fact]
         public void IndexReturnsAViewResultWithAListOfStudents()
